@@ -11,65 +11,79 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.organizer.MainController">
+<AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #942e2e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.organizer.MainController">
    <children>
-      <VBox layoutX="250.0" layoutY="76.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <VBox layoutY="25.0" prefWidth="1126.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <MenuBar fx:id="nmBar" prefHeight="25.0" prefWidth="364.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem fx:id="mnTimeTable" mnemonicParsing="false" text="Расписание" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
             <AnchorPane prefHeight="100.0" prefWidth="600.0">
                <children>
                   <Button fx:id="butBack" layoutY="44.0" mnemonicParsing="false" prefWidth="60.0" style="-fx-background-color: transparent;" text="&lt;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="24.0" />
                      </font></Button>
-                  <AnchorPane layoutX="87.0" layoutY="-50.0" prefHeight="99.0" prefWidth="587.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane layoutX="87.0" layoutY="-50.0" prefHeight="100.0" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <HBox layoutX="192.0" layoutY="8.0" prefHeight="97.0" prefWidth="478.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <HBox layoutX="192.0" layoutY="8.0" prefHeight="100.0" prefWidth="880.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <VBox fx:id="vb0" prefHeight="97.0" prefWidth="80.0" HBox.hgrow="ALWAYS">
+                              <VBox fx:id="vb0" prefHeight="97.0" prefWidth="80.0" style="-fx-border-color: #ccccbe;" HBox.hgrow="SOMETIMES">
                                  <children>
                                     <AnchorPane prefHeight="15.0" prefWidth="80.0">
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="-1.0" text="Понедельник" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="-1.0" style="-fx-border-color: #ccccbe;" text="Понедельник" textAlignment="CENTER" textFill="#ccccbe" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                  </children></VBox>
-                              <VBox fx:id="vb1" prefHeight="200.0" prefWidth="80.0" HBox.hgrow="ALWAYS">
+                              <VBox fx:id="vb1" prefHeight="200.0" prefWidth="80.0" style="-fx-border-color: #ccccbe;" HBox.hgrow="SOMETIMES">
                                  <children>
                                     <AnchorPane prefHeight="15.0" prefWidth="80.0">
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="-1.0" text="Вторник" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="-1.0" style="-fx-border-color: #ccccbe;" text="Вторник" textAlignment="CENTER" textFill="#ccccbe" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                  </children></VBox>
-                              <VBox fx:id="vb2" prefHeight="200.0" prefWidth="80.0" HBox.hgrow="ALWAYS">
+                              <VBox fx:id="vb2" prefHeight="200.0" prefWidth="80.0" style="-fx-border-color: #ccccbe;" HBox.hgrow="SOMETIMES">
                                  <children>
                                     <AnchorPane prefHeight="15.0" prefWidth="80.0">
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="-1.0" text="Среда" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="-1.0" style="-fx-border-color: #ccccbe;" text="Среда" textAlignment="CENTER" textFill="#ccccbe" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                  </children></VBox>
-                              <VBox fx:id="vb3" prefHeight="200.0" prefWidth="80.0" HBox.hgrow="ALWAYS">
+                              <VBox fx:id="vb3" prefHeight="200.0" prefWidth="80.0" style="-fx-border-color: #ccccbe;" HBox.hgrow="SOMETIMES">
                                  <children>
                                     <AnchorPane prefHeight="15.0" prefWidth="80.0">
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="-1.0" text="Четверг" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="-1.0" style="-fx-border-color: #ccccbe;" text="Четверг" textAlignment="CENTER" textFill="#ccccbe" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                  </children></VBox>
-                              <VBox fx:id="vb4" prefHeight="200.0" prefWidth="80.0" HBox.hgrow="ALWAYS">
+                              <VBox fx:id="vb4" prefHeight="200.0" prefWidth="80.0" style="-fx-border-color: #ccccbe;" HBox.hgrow="SOMETIMES">
                                  <children>
                                     <AnchorPane prefHeight="15.0" prefWidth="80.0">
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="-1.0" text="Пятница" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="-1.0" style="-fx-border-color: #ccccbe;" text="Пятница" textAlignment="CENTER" textFill="#ccccbe" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                  </children></VBox>
-                              <VBox fx:id="vb5" prefHeight="200.0" prefWidth="80.0" HBox.hgrow="ALWAYS">
+                              <VBox fx:id="vb5" prefHeight="200.0" prefWidth="80.0" style="-fx-border-color: #ccccbe;" HBox.hgrow="SOMETIMES">
                                  <children>
                                     <AnchorPane prefHeight="15.0" prefWidth="80.0">
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="-1.0" text="Суббота" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="-1.0" style="-fx-border-color: #ccccbe;" text="Суббота" textAlignment="CENTER" textFill="#ccccbe" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -88,24 +102,34 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="302.0" prefWidth="891.0" />
+            <AnchorPane prefHeight="11.0" prefWidth="891.0">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+               <children>
+                  <AnchorPane layoutX="162.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ccccbe;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
+               </children></AnchorPane>
+            <AnchorPane prefHeight="421.0" prefWidth="1000.0">
+               <children>
+                  <HBox layoutX="244.0" layoutY="132.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane prefHeight="421.0" prefWidth="300.0" />
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="200.0" prefWidth="11.0">
+                           <children>
+                              <AnchorPane layoutX="14.0" layoutY="75.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ccccbe;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" top="15.0" />
+                           </padding>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
          </children>
       </VBox>
-      <MenuBar fx:id="nmBar" prefHeight="25.0" prefWidth="364.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem fx:id="mnTimeTable" mnemonicParsing="false" text="Расписание" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <Button fx:id="butClose" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+      <Button fx:id="butClose" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
          <font>
             <Font size="10.0" />
          </font>

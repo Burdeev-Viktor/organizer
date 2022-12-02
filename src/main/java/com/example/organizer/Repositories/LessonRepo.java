@@ -127,5 +127,27 @@ public class LessonRepo extends db_Settings {
         }
         return lessonsList;
     }
+    public static void updateLessonById(Lesson lesson, int idLesson, int idUser){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DriverManager.getConnection(dbURL, dbUSER, dbPASSWORD);
+            String nameTable = idUser + "_timetable";
+            preparedStatement = connection.prepareStatement("UPDATE " + nameTable + " SET name = ?,teacher = ?,room = ?,day_of_week = ?,number_of_week = ?,type = ? WHERE id = ?");
+            preparedStatement.setString(1,lesson.getName());
+            preparedStatement.setString(2,lesson.getTeacher());
+            preparedStatement.setString(3,lesson.getRoom());
+            preparedStatement.setInt(4,lesson.getDayOfWeek());
+            preparedStatement.setInt(5,lesson.getNumberOfWeek());
+            preparedStatement.setString(6,lesson.getType());
+            preparedStatement.setInt(7,idLesson);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            closeConnection(null,preparedStatement,connection);
+        }
+    }
 }
 

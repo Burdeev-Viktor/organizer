@@ -1,6 +1,7 @@
 package com.example.organizer;
 
 import com.example.organizer.Repositories.LessonRepo;
+import com.example.organizer.model.Lesson;
 import com.example.organizer.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -63,6 +64,7 @@ public class SciencesController {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root,1000,700));
         stage.setTitle("Расписание");
+        LessonEditController.setEventTimetable(stage);
         stage.show();
     }
     public static void toNewTimeTableEdit( User user){
@@ -79,6 +81,41 @@ public class SciencesController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root,1000,700));
         stage.setTitle("Расписание");
+        LessonEditController.setEventTimetable(stage);
+        stage.show();
+    }
+    public static void updateTimeTableEdit( User user,Stage stage){
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("timetable-edit.fxml"));
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        if(!LessonRepo.timetableIsExistsByUser(user)){
+            LessonRepo.createTimetableByUser(user);
+        }
+        stage.setScene(new Scene(root,1000,700));
+        stage.setTitle("Расписание");
+        LessonEditController.setEventTimetable(stage);
+        stage.show();
+    }
+    public static void toEditLesson(Lesson lesson){
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("lesson-edit.fxml"));
+            root = loader.load();
+            LessonEditController lessonEditController = loader.getController();
+            lessonEditController.setInfo(lesson);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        if(!LessonRepo.timetableIsExistsByUser(user)){
+            LessonRepo.createTimetableByUser(user);
+        }
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root,600,450));
+        stage.setTitle("Изменить");
         stage.show();
     }
     public static void toMain(ActionEvent event,User user){
@@ -95,6 +132,8 @@ public class SciencesController {
         }
         MainController.setWeekCount(0);
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        stage.setMinHeight(620);
+        stage.setMinWidth(800);
         stage.setScene(new Scene(root,1000,700));
         stage.setTitle("Расписание");
         stage.show();
@@ -108,8 +147,8 @@ public class SciencesController {
             throw new RuntimeException(e);
         }
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        double wight = stage.getWidth();
-        double height = stage.getHeight();
+        double wight = stage.getWidth() - 16;
+        double height = stage.getHeight() - 39;
         stage.setScene(new Scene(root,wight,height));
         stage.setTitle("Расписание");
         stage.show();
@@ -125,7 +164,7 @@ public class SciencesController {
         }
         BuildLessonController.setEventTimetable(event);
         Stage stage = new Stage();
-        stage.setScene(new Scene(root,600,400));
+        stage.setScene(new Scene(root,600,450));
         stage.setTitle("Новая пара");
         stage.show();
     }

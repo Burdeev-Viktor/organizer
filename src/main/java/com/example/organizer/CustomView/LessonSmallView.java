@@ -1,8 +1,11 @@
 package com.example.organizer.CustomView;
 
 
+import com.example.organizer.LessonEditController;
 import com.example.organizer.Main;
+import com.example.organizer.SciencesController;
 import com.example.organizer.model.Lesson;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -31,7 +34,7 @@ public class LessonSmallView extends AnchorPane {
             throw new RuntimeException(exception);
         }
         pane.setOnMouseClicked(mouseEvent -> {
-
+            SciencesController.toEditLesson(lesson);
         });
         this.lbName.setText(lesson.getName());
         this.lbRoom.setText(lesson.getRoom());

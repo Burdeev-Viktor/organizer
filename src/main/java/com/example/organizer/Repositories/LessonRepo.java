@@ -39,6 +39,7 @@ public class LessonRepo extends db_Settings {
                     "  `room` VARCHAR(45) NULL,\n" +
                     "  `day_of_week` INT NULL,\n"+
                     "  `number_of_week` INT NULL,\n"+
+                    "  `type` VARCHAR(45) NULL,\n" +
                     "  PRIMARY KEY (`id`));");
             preparedStatement.execute();
         } catch (SQLException e) {
@@ -77,6 +78,36 @@ public class LessonRepo extends db_Settings {
             String nameTable = id + "_timetable";
             connection = DriverManager.getConnection(dbURL, dbUSER, dbPASSWORD);
             preparedStatement = connection.prepareStatement("SELECT * FROM " + nameTable + "");
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                lessonsList.add(new Lesson(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("teacher"),
+                        resultSet.getString("room"),
+                        resultSet.getString("type"),
+                        resultSet.getInt("day_of_week"),
+                        resultSet.getInt("number_of_week")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection(resultSet,preparedStatement,connection);
+        }
+        return lessonsList;
+    }
+
+    public static ArrayList<Lesson> getLessonsByUserByWeek(int id, int week) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        ArrayList<Lesson> lessonsList = new ArrayList<>();
+        try {
+            String nameTable = id + "_timetable";
+            connection = DriverManager.getConnection(dbURL, dbUSER, dbPASSWORD);
+            preparedStatement = connection.prepareStatement("SELECT * FROM " + nameTable + " WHERE number_of_week = ? OR number_of_week = 2");
+            preparedStatement.setInt(1,week);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 lessonsList.add(new Lesson(

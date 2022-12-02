@@ -8,4 +8,6 @@ module com.example.organizer {
 
     opens com.example.organizer to javafx.fxml;
     exports com.example.organizer;
+    exports com.example.organizer.CustomView;
+    opens com.example.organizer.CustomView to javafx.fxml;
 }

@@ -35,7 +35,7 @@
                </font>
             </Button>
             <Label layoutX="149.0" layoutY="335.0" text="Нет аккаунта?" />
-            <Button fx:id="butSignUp" layoutX="220.0" layoutY="332.0" mnemonicParsing="false" style="-fx-background-color: transform;" text="Зарегистрироваться" textFill="#2e2583" underline="true">
+            <Button fx:id="butSignUp" layoutX="220.0" layoutY="332.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Зарегистрироваться" textFill="#2e2583" underline="true">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>

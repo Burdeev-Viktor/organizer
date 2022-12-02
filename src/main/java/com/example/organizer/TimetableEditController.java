@@ -1,6 +1,7 @@
 package com.example.organizer;
 
 
+import com.example.organizer.CustomView.LessonSmallView;
 import com.example.organizer.Repositories.LessonRepo;
 import com.example.organizer.model.Lesson;
 import javafx.fxml.FXML;
@@ -17,6 +18,8 @@ public class TimetableEditController implements Initializable {
 
     @FXML
     private Button butAdd;
+    @FXML
+    private Button butToMain;
     @FXML
     private VBox vb00;
     @FXML
@@ -46,6 +49,10 @@ public class TimetableEditController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setInfo();
         butAdd.setOnAction(SciencesController::toAddLesson);
+        butToMain.setOnAction(event -> {
+            SciencesController.toMain(event,SciencesController.getUser());
+        });
+
     }
 
     public void setInfo(){
@@ -56,14 +63,15 @@ public class TimetableEditController implements Initializable {
         ArrayList<Lesson> lessonList = LessonRepo.getAllLessonsByUser(SciencesController.user.getId());
         for (Lesson lesson : lessonList) {
             if (lesson.getNumberOfWeek() < 2){
-                vBoxes[lesson.getNumberOfWeek()][lesson.getDayOfWeek()].getChildren().add(new LessonView(lesson));
+                vBoxes[lesson.getNumberOfWeek()][lesson.getDayOfWeek()].getChildren().add(new LessonSmallView(lesson));
                 vBoxes[lesson.getNumberOfWeek()][lesson.getDayOfWeek()].setSpacing(5);
             }else {
-                vBoxes[0][lesson.getDayOfWeek()].getChildren().add(new LessonView(lesson));
+                vBoxes[0][lesson.getDayOfWeek()].getChildren().add(new LessonSmallView(lesson));
                 vBoxes[0][lesson.getDayOfWeek()].setSpacing(5);
-                vBoxes[1][lesson.getDayOfWeek()].getChildren().add(new LessonView(lesson));
+                vBoxes[1][lesson.getDayOfWeek()].getChildren().add(new LessonSmallView(lesson));
                 vBoxes[1][lesson.getDayOfWeek()].setSpacing(5);
             }
         }
     }
+
 }

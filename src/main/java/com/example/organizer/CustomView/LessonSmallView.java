@@ -1,16 +1,16 @@
-package com.example.organizer;
+package com.example.organizer.CustomView;
 
 
+import com.example.organizer.Main;
 import com.example.organizer.model.Lesson;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
-public class LessonView extends AnchorPane {
+public class LessonSmallView extends AnchorPane {
     @FXML
     private Label lbName;
     @FXML
@@ -18,9 +18,9 @@ public class LessonView extends AnchorPane {
     @FXML
     private AnchorPane pane;
     private Lesson lesson;
-    public LessonView(Lesson lesson) {
+    public LessonSmallView(Lesson lesson) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(
-                "lesson-view.fxml"));
+                "lesson-small.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         this.lesson = lesson;

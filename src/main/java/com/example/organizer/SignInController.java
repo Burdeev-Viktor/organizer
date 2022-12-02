@@ -40,7 +40,7 @@ public class SignInController implements Initializable {
             }
             User user = UserRepo.getUserByLogin(twLogin.getText());
             SciencesController.setUser(user);
-            SciencesController.toTimeTableEdit(event,user);
+            SciencesController.toMain(event,user);
         });
 
     }

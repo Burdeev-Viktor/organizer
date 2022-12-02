@@ -1,20 +1,13 @@
 package com.example.organizer;
 
 import com.example.organizer.CustomView.LessonNanoView;
-import com.example.organizer.CustomView.LessonSmallView;
-import com.example.organizer.Repositories.LessonRepo;
 import com.example.organizer.Service.LessonService;
 import com.example.organizer.model.Lesson;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -29,8 +22,6 @@ public class MainController implements Initializable {
     private Button butNext;
     @FXML
     private MenuItem mnTimeTable;
-    @FXML
-    private MenuBar mnBar;
     @FXML
     private VBox vb0;
     @FXML
@@ -49,11 +40,11 @@ public class MainController implements Initializable {
         butClose.setDisable(true);
         butBack.setOnAction(event -> {
             weekCount--;
-            SciencesController.updateMain(event,SciencesController.getUser());
+            SciencesController.updateMain(event);
         });
         butNext.setOnAction(event -> {
             weekCount++;
-            SciencesController.updateMain(event,SciencesController.getUser());
+            SciencesController.updateMain(event);
 
         });
         mnTimeTable.setOnAction(event -> {

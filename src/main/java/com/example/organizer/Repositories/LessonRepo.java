@@ -13,17 +13,18 @@ public class LessonRepo extends db_Settings {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+        boolean result = false;
         try {
             connection = DriverManager.getConnection(dbURL, dbUSER, dbPASSWORD);
             preparedStatement = connection.prepareStatement("SHOW TABLES LIKE '%" + user.getId() + "_timetable%'");
             resultSet = preparedStatement.executeQuery();
-            return resultSet.isBeforeFirst();
+            result = resultSet.isBeforeFirst();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             closeConnection(resultSet,preparedStatement,connection);
         }
-        return false;
+        return !result;
     }
 
     public static void createTimetableByUser(User user) {

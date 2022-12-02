@@ -25,7 +25,7 @@ public class SciencesController {
     }
 
     public static void toSignUp(ActionEvent event){
-        Parent root = null;
+        Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("sign-up.fxml"));
             root = loader.load();
@@ -38,7 +38,7 @@ public class SciencesController {
         stage.show();
     }
     public static void toSignIn(ActionEvent event){
-        Parent root = null;
+        Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("sign-in.fxml"));
             root = loader.load();
@@ -51,14 +51,14 @@ public class SciencesController {
         stage.show();
     }
     public static void toTimeTableEdit(ActionEvent event, User user){
-        Parent root = null;
+        Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("timetable-edit.fxml"));
             root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if(!LessonRepo.timetableIsExistsByUser(user)){
+        if(LessonRepo.timetableIsExistsByUser(user)){
             LessonRepo.createTimetableByUser(user);
         }
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
@@ -68,14 +68,14 @@ public class SciencesController {
         stage.show();
     }
     public static void toNewTimeTableEdit( User user){
-        Parent root = null;
+        Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("timetable-edit.fxml"));
             root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if(!LessonRepo.timetableIsExistsByUser(user)){
+        if(LessonRepo.timetableIsExistsByUser(user)){
             LessonRepo.createTimetableByUser(user);
         }
         Stage stage = new Stage();
@@ -85,14 +85,14 @@ public class SciencesController {
         stage.show();
     }
     public static void updateTimeTableEdit( User user,Stage stage){
-        Parent root = null;
+        Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("timetable-edit.fxml"));
             root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if(!LessonRepo.timetableIsExistsByUser(user)){
+        if(LessonRepo.timetableIsExistsByUser(user)){
             LessonRepo.createTimetableByUser(user);
         }
         stage.setScene(new Scene(root,1000,700));
@@ -101,7 +101,7 @@ public class SciencesController {
         stage.show();
     }
     public static void toEditLesson(Lesson lesson){
-        Parent root = null;
+        Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("lesson-edit.fxml"));
             root = loader.load();
@@ -110,7 +110,7 @@ public class SciencesController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if(!LessonRepo.timetableIsExistsByUser(user)){
+        if(LessonRepo.timetableIsExistsByUser(user)){
             LessonRepo.createTimetableByUser(user);
         }
         Stage stage = new Stage();
@@ -119,11 +119,11 @@ public class SciencesController {
         stage.show();
     }
     public static void toMain(ActionEvent event,User user){
-        if(!LessonRepo.timetableIsExistsByUser(user)){
+        if(LessonRepo.timetableIsExistsByUser(user)){
             toTimeTableEdit(event,user);
             return;
         }
-        Parent root = null;
+        Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("main.fxml"));
             root = loader.load();
@@ -138,8 +138,8 @@ public class SciencesController {
         stage.setTitle("Расписание");
         stage.show();
     }
-    public static void updateMain(ActionEvent event,User user){
-        Parent root = null;
+    public static void updateMain(ActionEvent event){
+        Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("main.fxml"));
             root = loader.load();
@@ -155,7 +155,7 @@ public class SciencesController {
     }
 
     public static void toAddLesson(ActionEvent event){
-        Parent root = null;
+        Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("build-lesson.fxml"));
             root = loader.load();

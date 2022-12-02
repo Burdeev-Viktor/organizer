@@ -49,9 +49,7 @@ public class TimetableEditController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setInfo();
         butAdd.setOnAction(SciencesController::toAddLesson);
-        butToMain.setOnAction(event -> {
-            SciencesController.toMain(event,SciencesController.getUser());
-        });
+        butToMain.setOnAction(event -> SciencesController.toMain(event,SciencesController.getUser()));
 
     }
 

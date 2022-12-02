@@ -14,13 +14,11 @@ public class LessonNanoView extends AnchorPane {
     private Label lbName;
     @FXML
     private AnchorPane pane;
-    private Lesson lesson;
+
     public LessonNanoView(Lesson lesson) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(
-                "lesson-nano.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("lesson-nano.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-        this.lesson = lesson;
 
         try {
             fxmlLoader.load();
@@ -31,23 +29,11 @@ public class LessonNanoView extends AnchorPane {
 
         });
         this.lbName.setText(lesson.getName());
-        switch (lesson.getType()){
-            case "Лекция":{
-                this.pane.setStyle("-fx-background-color: #c94c4c");
-                break;
-            }
-            case "Лабораторная":{
-                this.pane.setStyle("-fx-background-color: #c9ac4cff");
-                break;
-            }
-            case "Практика":{
-                this.pane.setStyle("-fx-background-color: #674cc9");
-                break;
-            }
-            case "Консультация":{
-                this.pane.setStyle("-fx-background-color: #4cc5c9ff");
-                break;
-            }
+        switch (lesson.getType()) {
+            case "Лекция" -> this.pane.setStyle("-fx-background-color: #c94c4c");
+            case "Лабораторная" -> this.pane.setStyle("-fx-background-color: #c9ac4cff");
+            case "Практика" -> this.pane.setStyle("-fx-background-color: #674cc9");
+            case "Консультация" -> this.pane.setStyle("-fx-background-color: #4cc5c9ff");
         }
     }
 }

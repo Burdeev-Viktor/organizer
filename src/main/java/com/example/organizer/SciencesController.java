@@ -51,15 +51,15 @@ public class SciencesController {
         stage.show();
     }
     public static void toTimeTableEdit(ActionEvent event, User user){
+        if(LessonRepo.timetableIsExistsByUser(user)){
+            LessonRepo.createTimetableByUser(user);
+        }
         Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("timetable-edit.fxml"));
             root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-        if(LessonRepo.timetableIsExistsByUser(user)){
-            LessonRepo.createTimetableByUser(user);
         }
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root,1000,700));
@@ -132,9 +132,9 @@ public class SciencesController {
         }
         MainController.setWeekCount(0);
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        stage.setMinHeight(620);
-        stage.setMinWidth(800);
         stage.setScene(new Scene(root,1000,700));
+        stage.setMinHeight(700);
+        stage.setMinWidth(1000);
         stage.setTitle("Расписание");
         stage.show();
     }

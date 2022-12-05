@@ -1,6 +1,7 @@
-package com.example.organizer;
+package com.example.organizer.Controller;
 
 
+import com.example.organizer.Const;
 import com.example.organizer.CustomView.LessonSmallView;
 import com.example.organizer.Repositories.LessonRepo;
 import com.example.organizer.model.Lesson;
@@ -8,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -49,25 +49,25 @@ public class TimetableEditController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setInfo();
         butAdd.setOnAction(SciencesController::toAddLesson);
-        butToMain.setOnAction(event -> SciencesController.toMain(event,SciencesController.getUser()));
+        butToMain.setOnAction(event -> SciencesController.toMain(event, SciencesController.getUser()));
 
     }
 
-    public void setInfo(){
+    public void setInfo() {
         VBox[][] vBoxes = {
-                {vb00,vb01,vb02,vb03,vb04,vb05},
-                {vb10,vb11,vb12,vb13,vb14,vb15}
+                {vb00, vb01, vb02, vb03, vb04, vb05},
+                {vb10, vb11, vb12, vb13, vb14, vb15}
         };
         ArrayList<Lesson> lessonList = LessonRepo.getAllLessonsByUser(SciencesController.user.getId());
         for (Lesson lesson : lessonList) {
-            if (lesson.getNumberOfWeek() < 2){
+            if (lesson.getNumberOfWeek() < 2) {
                 vBoxes[lesson.getNumberOfWeek()][lesson.getDayOfWeek()].getChildren().add(new LessonSmallView(lesson));
-                vBoxes[lesson.getNumberOfWeek()][lesson.getDayOfWeek()].setSpacing(5);
-            }else {
+                vBoxes[lesson.getNumberOfWeek()][lesson.getDayOfWeek()].setSpacing(Const.VBOX_SPACING);
+            } else {
                 vBoxes[0][lesson.getDayOfWeek()].getChildren().add(new LessonSmallView(lesson));
-                vBoxes[0][lesson.getDayOfWeek()].setSpacing(5);
+                vBoxes[0][lesson.getDayOfWeek()].setSpacing(Const.VBOX_SPACING);
                 vBoxes[1][lesson.getDayOfWeek()].getChildren().add(new LessonSmallView(lesson));
-                vBoxes[1][lesson.getDayOfWeek()].setSpacing(5);
+                vBoxes[1][lesson.getDayOfWeek()].setSpacing(Const.VBOX_SPACING);
             }
         }
     }

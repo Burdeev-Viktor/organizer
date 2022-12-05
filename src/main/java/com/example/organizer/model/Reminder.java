@@ -10,10 +10,6 @@ public class Reminder {
     private String time;
     private String datOfWeek;
 
-    public int getId() {
-        return id;
-    }
-
     public Reminder(int id, String lessonName, String quest, String date, boolean switchR, String settingSwitch, String time) {
         this.id = id;
         this.lessonName = lessonName;
@@ -38,6 +34,47 @@ public class Reminder {
         this.quest = quest;
         this.date = date;
         this.switchR = switchR;
+    }
+
+    public Reminder(String lessonName, String quest, String date, boolean switchR, String settingSwitch) {
+        this.lessonName = lessonName;
+        this.quest = quest;
+        this.date = date;
+        this.switchR = switchR;
+        this.settingSwitch = settingSwitch;
+    }
+
+    public Reminder(int id, String lessonName, String quest, String date, boolean switchR, String settingSwitch, String time, String datOfWeek) {
+        this.id = id;
+        this.lessonName = lessonName;
+        this.quest = quest;
+        this.date = date;
+        this.switchR = switchR;
+        this.settingSwitch = settingSwitch;
+        this.time = time;
+        this.datOfWeek = datOfWeek;
+    }
+
+    public Reminder(int id, String lessonName, String quest, String date, boolean switchR) {
+        this.id = id;
+        this.lessonName = lessonName;
+        this.quest = quest;
+        this.date = date;
+        this.switchR = switchR;
+    }
+
+    public Reminder(String lessonName, String quest, String date, boolean switchR, String settingSwitch, String time, String datOfWeek) {
+        this.lessonName = lessonName;
+        this.quest = quest;
+        this.date = date;
+        this.switchR = switchR;
+        this.settingSwitch = settingSwitch;
+        this.time = time;
+        this.datOfWeek = datOfWeek;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getLessonName() {
@@ -88,48 +125,11 @@ public class Reminder {
         this.datOfWeek = datOfWeek;
     }
 
-    public Reminder(String lessonName, String quest, String date, boolean switchR, String settingSwitch) {
-        this.lessonName = lessonName;
-        this.quest = quest;
-        this.date = date;
-        this.switchR = switchR;
-        this.settingSwitch = settingSwitch;
-    }
-
-    public Reminder(int id, String lessonName, String quest, String date, boolean switchR, String settingSwitch, String time, String datOfWeek) {
-        this.id = id;
-        this.lessonName = lessonName;
-        this.quest = quest;
-        this.date = date;
-        this.switchR = switchR;
-        this.settingSwitch = settingSwitch;
-        this.time = time;
-        this.datOfWeek = datOfWeek;
-    }
-
-    public Reminder(int id, String lessonName, String quest, String date, boolean switchR) {
-        this.id = id;
-        this.lessonName = lessonName;
-        this.quest = quest;
-        this.date = date;
-        this.switchR = switchR;
-    }
-
     public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public Reminder(String lessonName, String quest, String date, boolean switchR, String settingSwitch, String time, String datOfWeek) {
-        this.lessonName = lessonName;
-        this.quest = quest;
-        this.date = date;
-        this.switchR = switchR;
-        this.settingSwitch = settingSwitch;
-        this.time = time;
-        this.datOfWeek = datOfWeek;
     }
 }

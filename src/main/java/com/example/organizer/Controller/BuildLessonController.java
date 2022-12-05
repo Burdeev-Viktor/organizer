@@ -1,5 +1,6 @@
-package com.example.organizer;
+package com.example.organizer.Controller;
 
+import com.example.organizer.Const;
 import com.example.organizer.Repositories.LessonRepo;
 import com.example.organizer.model.Lesson;
 import javafx.event.ActionEvent;
@@ -37,16 +38,45 @@ public class BuildLessonController implements Initializable {
         BuildLessonController.eventTimetable = eventTimetable;
     }
 
+    static void settingsChoiceBoxes(ChoiceBox<String> cbNumberOfWeek, ChoiceBox<String> cbDayOfWeek, ChoiceBox<String> cbType) {
+        String[] array = Const.CHOICE_BOX_NUMBER_OF_WEEK;
+        cbNumberOfWeek.getItems().addAll(array);
+        cbNumberOfWeek.setStyle("-fx-font-style: Arial Rounded MT Bold");
+        cbNumberOfWeek.setStyle("-fx-font-size: 18");
+        cbNumberOfWeek.setValue(Const.DEFAULT_VALUE_CHOICE_BOX);
+
+        array = Const.CHOICE_BOX_SIX_DAYS_OF_WEEK;
+        cbDayOfWeek.getItems().addAll(array);
+        cbDayOfWeek.setStyle("-fx-font-style: Arial Rounded MT Bold");
+        cbDayOfWeek.setStyle("-fx-font-size: 18");
+        cbDayOfWeek.setValue(Const.DEFAULT_VALUE_CHOICE_BOX);
+
+        array = Const.TYPE_OF_LESSON;
+        cbType.getItems().addAll(array);
+        cbType.setStyle("-fx-font-style: Arial Rounded MT Bold");
+        cbType.setStyle("-fx-font-size: 18");
+        cbType.setValue(Const.DEFAULT_VALUE_CHOICE_BOX);
+    }
+
+    public static boolean errorChecking(TextField twName, TextField twTeacher, TextField twRoom, ChoiceBox<String> cbDayOfWeek, ChoiceBox<String> cbNumberOfWeek, ChoiceBox<String> cbType) {
+        return !(!Objects.equals(twName.getText(), "") ||
+                !Objects.equals(twTeacher.getText(), "") ||
+                !Objects.equals(twRoom.getText(), "") ||
+                !Objects.equals(cbDayOfWeek.getValue(), Const.DEFAULT_VALUE_CHOICE_BOX) ||
+                !Objects.equals(cbNumberOfWeek.getValue(), Const.DEFAULT_VALUE_CHOICE_BOX) ||
+                !Objects.equals(cbType.getValue(), Const.DEFAULT_VALUE_CHOICE_BOX));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        settingsChoiceBoxes(cbNumberOfWeek, cbDayOfWeek,cbType);
+        settingsChoiceBoxes(cbNumberOfWeek, cbDayOfWeek, cbType);
         butClose.setOnAction(SciencesController::closeThis);
         butSave.setOnAction(event -> {
             if (errorChecking(twName, twTeacher, twRoom, cbDayOfWeek, cbNumberOfWeek, cbType)) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Введите все данные!");
+                alert.setContentText(Const.MESSAGE_ERROR_NOT_ALL_DATA);
                 alert.show();
-                return ;
+                return;
             }
             Lesson lesson = new Lesson(twName.getText(), twTeacher.getText(), twRoom.getText(), cbType.getValue(), -1, -1);
             switch (cbDayOfWeek.getValue()) {
@@ -67,33 +97,5 @@ public class BuildLessonController implements Initializable {
             SciencesController.closeThis(event);
         });
 
-    }
-
-    static void settingsChoiceBoxes(ChoiceBox<String> cbNumberOfWeek, ChoiceBox<String> cbDayOfWeek, ChoiceBox<String> cbType) {
-        String[] array = new String[]{"Первая", "Вторая", "Каждую"};
-        cbNumberOfWeek.getItems().addAll(array);
-        cbNumberOfWeek.setStyle("-fx-font-style: Arial Rounded MT Bold");
-        cbNumberOfWeek.setStyle("-fx-font-size: 18");
-        cbNumberOfWeek.setValue("Выбрать");
-
-        array = new String[]{"Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"};
-        cbDayOfWeek.getItems().addAll(array);
-        cbDayOfWeek.setStyle("-fx-font-style: Arial Rounded MT Bold");
-        cbDayOfWeek.setStyle("-fx-font-size: 18");
-        cbDayOfWeek.setValue("Выбрать");
-
-        array = new String[]{"Лекция", "Лабораторная", "Практика", "Консультация"};
-        cbType.getItems().addAll(array);
-        cbType.setStyle("-fx-font-style: Arial Rounded MT Bold");
-        cbType.setStyle("-fx-font-size: 18");
-        cbType.setValue("Выбрать");
-    }
-    public static boolean errorChecking(TextField twName, TextField twTeacher, TextField twRoom, ChoiceBox<String> cbDayOfWeek, ChoiceBox<String> cbNumberOfWeek, ChoiceBox<String> cbType){
-        return  !(!Objects.equals(twName.getText(), "") ||
-                !Objects.equals(twTeacher.getText(), "") ||
-                !Objects.equals(twRoom.getText(), "") ||
-                !Objects.equals(cbDayOfWeek.getValue(), "Выбрать") ||
-                !Objects.equals(cbNumberOfWeek.getValue(), "Выбрать") ||
-                !Objects.equals(cbType.getValue(), "Выбрать"));
     }
 }

@@ -1,8 +1,8 @@
 package com.example.organizer.CustomView;
 
 
+import com.example.organizer.Controller.SciencesController;
 import com.example.organizer.Main;
-import com.example.organizer.SciencesController;
 import com.example.organizer.model.Lesson;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+
 public class LessonSmallView extends AnchorPane {
     @FXML
     private Label lbName;

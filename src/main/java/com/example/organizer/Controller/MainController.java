@@ -1,8 +1,10 @@
-package com.example.organizer;
+package com.example.organizer.Controller;
 
+import com.example.organizer.Const;
 import com.example.organizer.CustomView.LessonNanoView;
 import com.example.organizer.CustomView.ReminderView;
 import com.example.organizer.Repositories.ReminderRepo;
+import com.example.organizer.SecondTherd.CheckingClass;
 import com.example.organizer.Service.LessonService;
 import com.example.organizer.model.Lesson;
 import com.example.organizer.model.Reminder;
@@ -10,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -67,6 +70,9 @@ public class MainController implements Initializable {
     @FXML
     private VBox vbReminders;
 
+    public static void setWeekCount(int weekCount) {
+        MainController.weekCount = weekCount;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -95,49 +101,53 @@ public class MainController implements Initializable {
         });
         butAdd.setOnAction(event -> {
             formationReminder();
+            CheckingClass.getCheckingClass().setRunning(false);
+            CheckingClass.getCheckingClass().start();
             SciencesController.updateMainByEvent(event);
         });
         setWeek();
         setDataOfNewReminder();
         setReminders();
     }
-    private void formationReminder(){
-        if(Objects.equals(twLessonName.getText(), "")){
+
+    private void formationReminder() {
+        if (Objects.equals(twLessonName.getText(), "")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Введите название предмета");
+            alert.setContentText(Const.MESSAGE_ERROR_NOT_LESSON_NAME);
             alert.show();
             return;
         }
         LocalDate localDate = dpDate.getValue();
         System.out.println(localDate);
-        if(localDate == null){
+        if (localDate == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Введите дату сдачи");
+            alert.setContentText(Const.MESSAGE_ERROR_NOT_DATE);
             alert.show();
             return;
         }
-        if(Objects.equals(cbSwitch.getValue(), "ДА") && Objects.equals(cbSwitchSetting.getValue(), "Каждую неделю") && Objects.equals(cbDayOfWeek.getValue(), "Выбрать")){
+        if (Objects.equals(cbSwitch.getValue(), Const.CHOICE_BOX_YES) && Objects.equals(cbSwitchSetting.getValue(), Const.CHOICE_BOX_NUMBER_OF_WEEK[2]) && Objects.equals(cbDayOfWeek.getValue(), Const.DEFAULT_VALUE_CHOICE_BOX)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Введите день недели когда вам напоминать");
+            alert.setContentText(Const.MESSAGE_ERROR_NOT_DAY_OF_WEEK);
             alert.show();
             return;
         }
-        Reminder reminder;
-        if(Objects.equals(cbSwitch.getValue(), "НЕТ")){
-            reminder = new Reminder(twLessonName.getText(),taQuest.getText(), localDate.toString(), false);
-        }else if (Objects.equals(cbSwitchSetting.getValue(), "Каждую неделю")){
-            reminder = new Reminder(twLessonName.getText(),taQuest.getText(), localDate.toString(), true,cbSwitchSetting.getValue(),cbHours.getValue()+":"+cbMinuts.getValue(),cbDayOfWeek.getValue());
-        }else {
-            reminder = new Reminder(twLessonName.getText(),taQuest.getText(), localDate.toString(), true,cbSwitchSetting.getValue(),cbHours.getValue()+":"+cbMinuts.getValue(),null);
+        Reminder reminder = null;
+        if (Objects.equals(cbSwitch.getValue(), Const.CHOICE_BOX_NO)) {
+            reminder = new Reminder(twLessonName.getText(), taQuest.getText(), localDate.toString(), false);
+        } else if (Objects.equals(cbSwitchSetting.getValue(), Const.CHOICE_BOX_NUMBER_OF_WEEK[2])) {
+            reminder = new Reminder(twLessonName.getText(), taQuest.getText(), localDate.toString(), true, cbSwitchSetting.getValue(), cbHours.getValue() + Const.COLON + cbMinuts.getValue(), cbDayOfWeek.getValue());
+        } else {
+            reminder = new Reminder(twLessonName.getText(), taQuest.getText(), localDate.toString(), true, cbSwitchSetting.getValue(), cbHours.getValue() + Const.COLON + cbMinuts.getValue(), null);
         }
-        if(ReminderRepo.reminderTableIsExistsByUser(SciencesController.getUser())){
+        if (ReminderRepo.reminderTableIsExistsByUser(SciencesController.getUser())) {
             ReminderRepo.createReminderTableByUser(SciencesController.getUser());
         }
-        ReminderRepo.addReminderByIdUser(reminder,SciencesController.user.getId());
+        ReminderRepo.addReminderByIdUser(reminder, SciencesController.user.getId());
         setDataOfNewReminder();
     }
-    private void setReminders(){
-        if(ReminderRepo.reminderTableIsExistsByUser(SciencesController.getUser())){
+
+    private void setReminders() {
+        if (ReminderRepo.reminderTableIsExistsByUser(SciencesController.getUser())) {
             ReminderRepo.createReminderTableByUser(SciencesController.getUser());
         }
         ArrayList<Reminder> reminderArrayList = null;
@@ -150,27 +160,27 @@ public class MainController implements Initializable {
         }
 
     }
-    private void setDataOfNewReminder(){
+
+    private void setDataOfNewReminder() {
         ReminderEditController.setDataOfcb(twLessonName, taQuest, cbSwitch, cbSwitchSetting, cbHours, cbMinuts, cbDayOfWeek);
     }
-    private void setWeek(){
+
+    private void setWeek() {
         VBox[] vBoxes = {
-                vb0,vb1,vb2,vb3,vb4,vb5
+                vb0, vb1, vb2, vb3, vb4, vb5
         };
         ArrayList<Lesson> lessonList = LessonService.getLessonsThisWeek(weekCount);
         for (Lesson lesson : lessonList) {
-                vBoxes[lesson.getDayOfWeek()].getChildren().add(new LessonNanoView(lesson));
-                vBoxes[lesson.getDayOfWeek()].setSpacing(2);
+            vBoxes[lesson.getDayOfWeek()].getChildren().add(new LessonNanoView(lesson));
+            vBoxes[lesson.getDayOfWeek()].setSpacing(2);
         }
     }
 
-    public static void setWeekCount(int weekCount) {
-        MainController.weekCount = weekCount;
-    }
-    private void disOrEnableDayOfWeek(){
+    private void disOrEnableDayOfWeek() {
         ReminderEditController.disOrEnableDayOfWeek(cbSwitchSetting, cbDayOfWeek, lbDayOfWeek);
     }
-    private void disOrEnable(){
+
+    private void disOrEnable() {
         ReminderEditController.disOrEnable(cbSwitch, lbSetting, lbDayOfWeek, ldtime1, lbTime, cbSwitchSetting, cbHours, cbMinuts, cbDayOfWeek);
     }
 }

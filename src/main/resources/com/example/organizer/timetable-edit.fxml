@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #942e2e;"
             xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.organizer.TimetableEditController">
+            fx:controller="com.example.organizer.Controller.TimetableEditController">
     <VBox layoutX="240.0" layoutY="25.0" prefHeight="560.0" prefWidth="1000.0" AnchorPane.bottomAnchor="140.0"
           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
        <HBox prefHeight="280.0" prefWidth="600.0" spacing="5.0" VBox.vgrow="ALWAYS">

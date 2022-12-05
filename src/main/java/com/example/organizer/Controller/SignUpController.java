@@ -1,5 +1,6 @@
-package com.example.organizer;
+package com.example.organizer.Controller;
 
+import com.example.organizer.Const;
 import com.example.organizer.Repositories.UserRepo;
 import com.example.organizer.model.User;
 import javafx.fxml.FXML;
@@ -26,35 +27,36 @@ public class SignUpController implements Initializable {
     private PasswordField twPassword;
     @FXML
     private PasswordField twSecondPassword;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         butSignIn.setOnAction(SciencesController::toSignIn);
         butSignUp.setOnAction(event -> {
-            if(Objects.equals(twLogin.getText(), "") || Objects.equals(twName.getText(), "") || Objects.equals(twPassword.getText(), "") || Objects.equals(twSecondPassword.getText(), "")){
+            if (Objects.equals(twLogin.getText(), "") || Objects.equals(twName.getText(), "") || Objects.equals(twPassword.getText(), "") || Objects.equals(twSecondPassword.getText(), "")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Введите все данные!");
+                alert.setContentText(Const.MESSAGE_ERROR_NOT_ALL_DATA);
                 alert.show();
                 return;
             }
-            if (!Objects.equals(twPassword.getText(), twSecondPassword.getText())){
+            if (!Objects.equals(twPassword.getText(), twSecondPassword.getText())) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Пороли не совпадают!");
+                alert.setContentText(Const.MESSAGE_ERROR_PASSWORD_NOT_SUPPRESS);
                 alert.show();
                 return;
             }
-            if (twPassword.getText().length() < 3){
+            if (twPassword.getText().length() < Const.LENGTH_OF_PASSWORD) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Пороль должен содержать не менее 2-х символов");
+                alert.setContentText(Const.MESSAGE_ERROR_PASSWORD_NOT_CURE);
                 alert.show();
                 return;
             }
-            if (UserRepo.userIsExistsByLogin(twLogin.getText())){
+            if (UserRepo.userIsExistsByLogin(twLogin.getText())) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Пользователь с таким логином уже существует!");
+                alert.setContentText(Const.MESSAGE_ERROR_USERNAME_IS_EXIST);
                 alert.show();
                 return;
             }
-            User user = new User(twLogin.getText(),twPassword.getText(),twName.getText());
+            User user = new User(twLogin.getText(), twPassword.getText(), twName.getText());
             UserRepo.signUpUser(user);
             SciencesController.toSignIn(event);
         });

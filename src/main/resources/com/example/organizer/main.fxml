@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #942e2e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.organizer.MainController">
+<AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #942e2e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.organizer.Controller.MainController">
    <VBox layoutY="25.0" prefWidth="1126.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <MenuBar prefHeight="25.0" prefWidth="364.0" VBox.vgrow="NEVER">
          <Menu mnemonicParsing="false" text="Edit">

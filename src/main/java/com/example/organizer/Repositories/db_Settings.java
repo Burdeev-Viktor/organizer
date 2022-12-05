@@ -10,7 +10,7 @@ abstract class db_Settings {
     protected static String dbUSER = "root";
     protected static String dbPASSWORD = "VIKtor654456";
 
-    static protected void closeConnection(ResultSet resultSet, PreparedStatement preparedStatement, Connection connection){
+    static protected void closeConnection(ResultSet resultSet, PreparedStatement preparedStatement, Connection connection) {
         if (resultSet != null) {
             try {
                 resultSet.close();

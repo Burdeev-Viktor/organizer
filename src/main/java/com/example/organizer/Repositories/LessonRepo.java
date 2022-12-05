@@ -7,22 +7,24 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class LessonRepo extends db_Settings {
+    private static final String NAME_TABLE_TIMETABLE = "_timetable";
 
-    public static void deleteLessonById(User user,Lesson lesson) {
+    public static void deleteLessonById(User user, Lesson lesson) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
             connection = DriverManager.getConnection(dbURL, dbUSER, dbPASSWORD);
-            String nameTable = user.getId() + "_timetable";
+            String nameTable = user.getId() + NAME_TABLE_TIMETABLE;
             preparedStatement = connection.prepareStatement("DELETE FROM " + nameTable + " WHERE id = ?");
-            preparedStatement.setInt(1,lesson.getId());
+            preparedStatement.setInt(1, lesson.getId());
             preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            closeConnection(null,preparedStatement,connection);
+            closeConnection(null, preparedStatement, connection);
         }
     }
+
     public static boolean timetableIsExistsByUser(User user) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -37,7 +39,7 @@ public class LessonRepo extends db_Settings {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            closeConnection(resultSet,preparedStatement,connection);
+            closeConnection(resultSet, preparedStatement, connection);
         }
         return !result;
     }
@@ -53,49 +55,51 @@ public class LessonRepo extends db_Settings {
                     "  `name` VARCHAR(45) NULL,\n" +
                     "  `teacher` VARCHAR(45) NULL,\n" +
                     "  `room` VARCHAR(45) NULL,\n" +
-                    "  `day_of_week` INT NULL,\n"+
-                    "  `number_of_week` INT NULL,\n"+
+                    "  `day_of_week` INT NULL,\n" +
+                    "  `number_of_week` INT NULL,\n" +
                     "  `type` VARCHAR(45) NULL,\n" +
                     "  PRIMARY KEY (`id`));");
             preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            closeConnection(null,preparedStatement,connection);
+            closeConnection(null, preparedStatement, connection);
         }
     }
-    public static void addLessonByIdUser(Lesson lesson,int id){
+
+    public static void addLessonByIdUser(Lesson lesson, int id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         try {
             connection = DriverManager.getConnection(dbURL, dbUSER, dbPASSWORD);
-            String nameTable = id + "_timetable";
+            String nameTable = id + NAME_TABLE_TIMETABLE;
             preparedStatement = connection.prepareStatement("INSERT INTO " + nameTable + " (name,teacher,room,day_of_week,number_of_week,type) VALUES (?,?,?,?,?,?)");
-            preparedStatement.setString(1,lesson.getName());
-            preparedStatement.setString(2,lesson.getTeacher());
-            preparedStatement.setString(3,lesson.getRoom());
-            preparedStatement.setInt(4,lesson.getDayOfWeek());
-            preparedStatement.setInt(5,lesson.getNumberOfWeek());
-            preparedStatement.setString(6,lesson.getType());
+            preparedStatement.setString(1, lesson.getName());
+            preparedStatement.setString(2, lesson.getTeacher());
+            preparedStatement.setString(3, lesson.getRoom());
+            preparedStatement.setInt(4, lesson.getDayOfWeek());
+            preparedStatement.setInt(5, lesson.getNumberOfWeek());
+            preparedStatement.setString(6, lesson.getType());
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
-            closeConnection(null,preparedStatement,connection);
+        } finally {
+            closeConnection(null, preparedStatement, connection);
         }
     }
+
     public static ArrayList<Lesson> getAllLessonsByUser(int id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         ArrayList<Lesson> lessonsList = new ArrayList<>();
         try {
-            String nameTable = id + "_timetable";
+            String nameTable = id + NAME_TABLE_TIMETABLE;
             connection = DriverManager.getConnection(dbURL, dbUSER, dbPASSWORD);
             preparedStatement = connection.prepareStatement("SELECT * FROM " + nameTable + "");
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 lessonsList.add(new Lesson(
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
@@ -109,7 +113,7 @@ public class LessonRepo extends db_Settings {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            closeConnection(resultSet,preparedStatement,connection);
+            closeConnection(resultSet, preparedStatement, connection);
         }
         return lessonsList;
     }
@@ -120,12 +124,12 @@ public class LessonRepo extends db_Settings {
         ResultSet resultSet = null;
         ArrayList<Lesson> lessonsList = new ArrayList<>();
         try {
-            String nameTable = id + "_timetable";
+            String nameTable = id + NAME_TABLE_TIMETABLE;
             connection = DriverManager.getConnection(dbURL, dbUSER, dbPASSWORD);
             preparedStatement = connection.prepareStatement("SELECT * FROM " + nameTable + " WHERE number_of_week = ? OR number_of_week = 2");
-            preparedStatement.setInt(1,week);
+            preparedStatement.setInt(1, week);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 lessonsList.add(new Lesson(
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
@@ -139,30 +143,31 @@ public class LessonRepo extends db_Settings {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            closeConnection(resultSet,preparedStatement,connection);
+            closeConnection(resultSet, preparedStatement, connection);
         }
         return lessonsList;
     }
-    public static void updateLessonById(Lesson lesson, int idLesson, int idUser){
+
+    public static void updateLessonById(Lesson lesson, int idLesson, int idUser) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         try {
             connection = DriverManager.getConnection(dbURL, dbUSER, dbPASSWORD);
-            String nameTable = idUser + "_timetable";
+            String nameTable = idUser + NAME_TABLE_TIMETABLE;
             preparedStatement = connection.prepareStatement("UPDATE " + nameTable + " SET name = ?,teacher = ?,room = ?,day_of_week = ?,number_of_week = ?,type = ? WHERE id = ?");
-            preparedStatement.setString(1,lesson.getName());
-            preparedStatement.setString(2,lesson.getTeacher());
-            preparedStatement.setString(3,lesson.getRoom());
-            preparedStatement.setInt(4,lesson.getDayOfWeek());
-            preparedStatement.setInt(5,lesson.getNumberOfWeek());
-            preparedStatement.setString(6,lesson.getType());
-            preparedStatement.setInt(7,idLesson);
+            preparedStatement.setString(1, lesson.getName());
+            preparedStatement.setString(2, lesson.getTeacher());
+            preparedStatement.setString(3, lesson.getRoom());
+            preparedStatement.setInt(4, lesson.getDayOfWeek());
+            preparedStatement.setInt(5, lesson.getNumberOfWeek());
+            preparedStatement.setString(6, lesson.getType());
+            preparedStatement.setInt(7, idLesson);
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
-            closeConnection(null,preparedStatement,connection);
+        } finally {
+            closeConnection(null, preparedStatement, connection);
         }
     }
 }

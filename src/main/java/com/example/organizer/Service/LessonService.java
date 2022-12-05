@@ -1,7 +1,7 @@
 package com.example.organizer.Service;
 
+import com.example.organizer.Controller.SciencesController;
 import com.example.organizer.Repositories.LessonRepo;
-import com.example.organizer.SciencesController;
 import com.example.organizer.model.Lesson;
 
 import java.time.LocalDateTime;

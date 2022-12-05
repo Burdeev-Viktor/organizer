@@ -1,6 +1,8 @@
-package com.example.organizer;
+package com.example.organizer.Controller;
 
+import com.example.organizer.Const;
 import com.example.organizer.Repositories.UserRepo;
+import com.example.organizer.SecondTherd.SystemTrayClass;
 import com.example.organizer.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,21 +28,22 @@ public class SignInController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         butSignUp.setOnAction(SciencesController::toSignUp);
         butSignIn.setOnAction(event -> {
-            if(twLogin.getText() == null || twPassword.getText() == null){
+            if (twLogin.getText() == null || twPassword.getText() == null) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Введите все данные!");
+                alert.setContentText(Const.MESSAGE_ERROR_NOT_ALL_DATA);
                 alert.show();
                 return;
             }
-            if(!UserRepo.userIsExistsByUser(new User(twLogin.getText(),twPassword.getText()))){
+            if (!UserRepo.userIsExistsByUser(new User(twLogin.getText(), twPassword.getText()))) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Ошибка входа, проверьте Логин или Пороль!");
+                alert.setContentText(Const.MESSAGE_ERROR_SIGN_IN);
                 alert.show();
                 return;
             }
             User user = UserRepo.getUserByLogin(twLogin.getText());
             SciencesController.setUser(user);
-            SciencesController.toMain(event,user);
+            SystemTrayClass.start();
+            SciencesController.toMain(event, user);
         });
 
     }

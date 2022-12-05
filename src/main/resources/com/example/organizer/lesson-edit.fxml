@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #942e2e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.organizer.LessonEditController">
+<AnchorPane prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #942e2e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.organizer.Controller.LessonEditController">
     <Label layoutX="111.0" layoutY="52.0" text="Название:" textFill="#ccccbe" AnchorPane.leftAnchor="111.0">
         <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
@@ -33,7 +33,7 @@
             <Font name="Arial Rounded MT Bold" size="18.0" />
         </font>
     </Label>
-    <TextField fx:id="twName" layoutX="268.0" layoutY="46.0" promptText="qwe" AnchorPane.rightAnchor="109.0">
+    <TextField fx:id="twName" layoutX="268.0" layoutY="46.0" AnchorPane.rightAnchor="109.0">
         <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
         </font>

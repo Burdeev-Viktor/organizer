@@ -6,7 +6,7 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
       prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.organizer.SignInController">
+      fx:controller="com.example.organizer.Controller.SignInController">
    <AnchorPane prefHeight="400.0" prefWidth="177.0" style="-fx-background-color: #942e2e;"/>
    <AnchorPane prefHeight="400.0" prefWidth="526.0">
       <TextField fx:id="twLogin" layoutX="222.0" layoutY="132.0" prefHeight="39.0" prefWidth="252.0"

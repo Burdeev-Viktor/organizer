@@ -1,6 +1,5 @@
 package com.example.organizer.Repositories;
 
-import com.example.organizer.model.Lesson;
 import com.example.organizer.model.Reminder;
 import com.example.organizer.model.User;
 
@@ -8,6 +7,35 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ReminderRepo extends db_Settings{
+    public static ArrayList<Reminder>  getRemindersEnable(User user) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        ArrayList<Reminder> lessonsList = new ArrayList<>();
+        try {
+            String nameTable = user.getId() + "_reminders";
+            connection = DriverManager.getConnection(dbURL, dbUSER, dbPASSWORD);
+            preparedStatement = connection.prepareStatement("SELECT * FROM " + nameTable + " WHERE switch = 1");
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                lessonsList.add(new Reminder(
+                        resultSet.getInt("id"),
+                        resultSet.getString("lesson"),
+                        resultSet.getString("quest"),
+                        resultSet.getString("date"),
+                        resultSet.getBoolean("switch"),
+                        resultSet.getString("settingSwitch"),
+                        resultSet.getString("time"),
+                        resultSet.getString("dayOfWeek")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection(resultSet,preparedStatement,connection);
+        }
+        return lessonsList;
+    }
     public static void deleteReminderById(User user,Reminder reminder) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;

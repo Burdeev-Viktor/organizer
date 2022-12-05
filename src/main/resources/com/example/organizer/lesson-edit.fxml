@@ -33,7 +33,7 @@
             <Font name="Arial Rounded MT Bold" size="18.0" />
         </font>
     </Label>
-    <TextField fx:id="twName" layoutX="268.0" layoutY="46.0" promptText="qwe" AnchorPane.rightAnchor="109.0">
+    <TextField fx:id="twName" layoutX="268.0" layoutY="46.0" AnchorPane.rightAnchor="109.0">
         <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
         </font>

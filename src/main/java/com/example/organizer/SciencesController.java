@@ -158,6 +158,19 @@ public class SciencesController {
         ReminderEditController.setEventTimetable(stage);
         stage.show();
     }
+    public static void newMain(){
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("main.fxml"));
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root,1000,700));
+        stage.setTitle("Студенческий органайзер");
+        stage.show();
+    }
     public static void updateMainByStage(Stage stage){
         Parent root;
         try {

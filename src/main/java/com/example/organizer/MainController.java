@@ -3,6 +3,7 @@ package com.example.organizer;
 import com.example.organizer.CustomView.LessonNanoView;
 import com.example.organizer.CustomView.ReminderView;
 import com.example.organizer.Repositories.ReminderRepo;
+import com.example.organizer.SecondTherd.CheckingClass;
 import com.example.organizer.Service.LessonService;
 import com.example.organizer.model.Lesson;
 import com.example.organizer.model.Reminder;
@@ -95,6 +96,8 @@ public class MainController implements Initializable {
         });
         butAdd.setOnAction(event -> {
             formationReminder();
+            CheckingClass.getCheckingClass().setRunning(false);
+            CheckingClass.getCheckingClass().start();
             SciencesController.updateMainByEvent(event);
         });
         setWeek();

@@ -1,6 +1,7 @@
 package com.example.organizer;
 
 import com.example.organizer.Repositories.UserRepo;
+import com.example.organizer.SecondTherd.SystemTrayClass;
 import com.example.organizer.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+
+import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -40,6 +43,7 @@ public class SignInController implements Initializable {
             }
             User user = UserRepo.getUserByLogin(twLogin.getText());
             SciencesController.setUser(user);
+            SystemTrayClass.start();
             SciencesController.toMain(event,user);
         });
 

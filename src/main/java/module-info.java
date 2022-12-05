@@ -5,6 +5,7 @@ module com.example.organizer {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires java.sql;
+    requires java.desktop;
 
     opens com.example.organizer to javafx.fxml;
     exports com.example.organizer;

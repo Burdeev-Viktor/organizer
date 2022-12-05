@@ -24,6 +24,8 @@ public class LessonEditController implements Initializable {
     @FXML
     private Button butClose;
     @FXML
+    private Button butDel;
+    @FXML
     private Button butSave;
     @FXML
     private TextField twName;
@@ -64,6 +66,11 @@ public class LessonEditController implements Initializable {
                 case "Каждую" -> lesson.setNumberOfWeek(2);
             }
             LessonRepo.updateLessonById(lesson, this.lesson.getId(), SciencesController.getUser().getId());
+            SciencesController.updateTimeTableEdit(SciencesController.getUser(),tableStage);
+            SciencesController.closeThis(event);
+        });
+        butDel.setOnAction(event -> {
+            LessonRepo.deleteLessonById(SciencesController.getUser(),this.lesson);
             SciencesController.updateTimeTableEdit(SciencesController.getUser(),tableStage);
             SciencesController.closeThis(event);
         });

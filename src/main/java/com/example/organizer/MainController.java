@@ -74,11 +74,11 @@ public class MainController implements Initializable {
         butClose.setDisable(true);
         butBack.setOnAction(event -> {
             weekCount--;
-            SciencesController.updateMain(event);
+            SciencesController.updateMainByEvent(event);
         });
         butNext.setOnAction(event -> {
             weekCount++;
-            SciencesController.updateMain(event);
+            SciencesController.updateMainByEvent(event);
 
         });
         mnTimeTable.setOnAction(event -> {
@@ -95,13 +95,13 @@ public class MainController implements Initializable {
         });
         butAdd.setOnAction(event -> {
             formationReminder();
-            SciencesController.updateMain(event);
+            SciencesController.updateMainByEvent(event);
         });
         setWeek();
         setDataOfNewReminder();
         setReminders();
     }
-    public void formationReminder(){
+    private void formationReminder(){
         if(Objects.equals(twLessonName.getText(), "")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Введите название предмета");
@@ -136,7 +136,7 @@ public class MainController implements Initializable {
         ReminderRepo.addReminderByIdUser(reminder,SciencesController.user.getId());
         setDataOfNewReminder();
     }
-    public void setReminders(){
+    private void setReminders(){
         if(ReminderRepo.reminderTableIsExistsByUser(SciencesController.getUser())){
             ReminderRepo.createReminderTableByUser(SciencesController.getUser());
         }
@@ -150,38 +150,10 @@ public class MainController implements Initializable {
         }
 
     }
-    public void setDataOfNewReminder(){
-        twLessonName.setText("");
-        taQuest.setText("");
-        String[] arrayItemsOfCb = {"ДА","НЕТ"};
-        cbSwitch.getItems().addAll(arrayItemsOfCb);
-        cbSwitch.setValue(arrayItemsOfCb[0]);
-
-        arrayItemsOfCb = new String[]{"Каждый день", "Каждую неделю"};
-        cbSwitchSetting.getItems().addAll(arrayItemsOfCb);
-        cbSwitchSetting.setValue(arrayItemsOfCb[0]);
-
-        for (int  i = 0; i < 24;i++){
-            if(Integer.toString(i).length() < 1){
-                cbHours.getItems().add("0"+i);
-                continue;
-            }
-            cbHours.getItems().add(Integer.toString(i));
-        }
-        cbHours.setValue("00");
-        for (int  i = 0; i < 60; i+=5){
-            if(Integer.toString(i).length() < 1){
-                cbMinuts.getItems().add("0"+i);
-                continue;
-            }
-            cbMinuts.getItems().add(Integer.toString(i));
-        }
-        cbMinuts.setValue("00");
-        arrayItemsOfCb = new String[]{"Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота","Воскресенье"};
-        cbDayOfWeek.getItems().addAll(arrayItemsOfCb);
-        cbDayOfWeek.setValue("Выбрать");
+    private void setDataOfNewReminder(){
+        ReminderEditController.setDataOfcb(twLessonName, taQuest, cbSwitch, cbSwitchSetting, cbHours, cbMinuts, cbDayOfWeek);
     }
-    public void setWeek(){
+    private void setWeek(){
         VBox[] vBoxes = {
                 vb0,vb1,vb2,vb3,vb4,vb5
         };
@@ -195,44 +167,10 @@ public class MainController implements Initializable {
     public static void setWeekCount(int weekCount) {
         MainController.weekCount = weekCount;
     }
-    public void disOrEnableDayOfWeek(){
-        if(Objects.equals(cbSwitchSetting.getValue(), "Каждый день")){
-            cbDayOfWeek.setVisible(false);
-            cbDayOfWeek.setDisable(true);
-            lbDayOfWeek.setVisible(false);
-        }else {
-            cbDayOfWeek.setVisible(true);
-            cbDayOfWeek.setDisable(false);
-            lbDayOfWeek.setVisible(true);
-        }
+    private void disOrEnableDayOfWeek(){
+        ReminderEditController.disOrEnableDayOfWeek(cbSwitchSetting, cbDayOfWeek, lbDayOfWeek);
     }
-    public void disOrEnable(){
-        if(Objects.equals(cbSwitch.getValue(), "НЕТ")){
-            lbSetting.setVisible(false);
-            lbDayOfWeek.setVisible(false);
-            ldtime1.setVisible(false);
-            lbTime.setVisible(false);
-            cbSwitchSetting.setVisible(false);
-            cbSwitchSetting.setDisable(true);
-            cbHours.setVisible(false);
-            cbHours.setDisable(true);
-            cbMinuts.setVisible(false);
-            cbMinuts.setDisable(true);
-            cbDayOfWeek.setVisible(false);
-            cbDayOfWeek.setDisable(true);
-        }else {
-            lbSetting.setVisible(true);
-            lbDayOfWeek.setVisible(true);
-            ldtime1.setVisible(true);
-            lbTime.setVisible(true);
-            cbSwitchSetting.setVisible(true);
-            cbSwitchSetting.setDisable(false);
-            cbHours.setVisible(true);
-            cbHours.setDisable(false);
-            cbMinuts.setVisible(true);
-            cbMinuts.setDisable(false);
-            cbDayOfWeek.setVisible(true);
-            cbDayOfWeek.setDisable(false);
-        }
+    private void disOrEnable(){
+        ReminderEditController.disOrEnable(cbSwitch, lbSetting, lbDayOfWeek, ldtime1, lbTime, cbSwitchSetting, cbHours, cbMinuts, cbDayOfWeek);
     }
 }

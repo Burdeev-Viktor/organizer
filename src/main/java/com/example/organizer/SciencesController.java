@@ -2,6 +2,7 @@ package com.example.organizer;
 
 import com.example.organizer.Repositories.LessonRepo;
 import com.example.organizer.model.Lesson;
+import com.example.organizer.model.Reminder;
 import com.example.organizer.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -118,6 +119,24 @@ public class SciencesController {
         stage.setTitle("Изменить");
         stage.show();
     }
+    public static void toEditReminder(Reminder reminder){
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("reminder-edit.fxml"));
+            root = loader.load();
+            ReminderEditController reminderEditController = loader.getController();
+            reminderEditController.setInfo(reminder);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        if(LessonRepo.timetableIsExistsByUser(user)){
+            LessonRepo.createTimetableByUser(user);
+        }
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root,600,530));
+        stage.setTitle("Изменить");
+        stage.show();
+    }
     public static void toMain(ActionEvent event,User user){
         if(LessonRepo.timetableIsExistsByUser(user)){
             toTimeTableEdit(event,user);
@@ -136,9 +155,22 @@ public class SciencesController {
         stage.setMinHeight(700);
         stage.setMinWidth(1000);
         stage.setTitle("Расписание");
+        ReminderEditController.setEventTimetable(stage);
         stage.show();
     }
-    public static void updateMain(ActionEvent event){
+    public static void updateMainByStage(Stage stage){
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("main.fxml"));
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.setScene(new Scene(root,1000,700));
+        stage.setTitle("Студенческий органайзер");
+        stage.show();
+    }
+    public static void updateMainByEvent(ActionEvent event){
         Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("main.fxml"));
@@ -151,6 +183,7 @@ public class SciencesController {
         double height = stage.getHeight() - 39;
         stage.setScene(new Scene(root,wight,height));
         stage.setTitle("Расписание");
+        ReminderEditController.setEventTimetable(stage);
         stage.show();
     }
 

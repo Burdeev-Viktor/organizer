@@ -8,7 +8,21 @@ import java.util.ArrayList;
 
 public class LessonRepo extends db_Settings {
 
-
+    public static void deleteLessonById(User user,Lesson lesson) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = DriverManager.getConnection(dbURL, dbUSER, dbPASSWORD);
+            String nameTable = user.getId() + "_timetable";
+            preparedStatement = connection.prepareStatement("DELETE FROM " + nameTable + " WHERE id = ?");
+            preparedStatement.setInt(1,lesson.getId());
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection(null,preparedStatement,connection);
+        }
+    }
     public static boolean timetableIsExistsByUser(User user) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -16,6 +30,7 @@ public class LessonRepo extends db_Settings {
         boolean result = false;
         try {
             connection = DriverManager.getConnection(dbURL, dbUSER, dbPASSWORD);
+
             preparedStatement = connection.prepareStatement("SHOW TABLES LIKE '%" + user.getId() + "_timetable%'");
             resultSet = preparedStatement.executeQuery();
             result = resultSet.isBeforeFirst();

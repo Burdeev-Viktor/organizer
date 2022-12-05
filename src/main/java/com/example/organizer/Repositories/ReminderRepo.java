@@ -8,6 +8,21 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ReminderRepo extends db_Settings{
+    public static void deleteReminderById(User user,Reminder reminder) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = DriverManager.getConnection(dbURL, dbUSER, dbPASSWORD);
+            String nameTable = user.getId() + "_reminders";
+            preparedStatement = connection.prepareStatement("DELETE FROM " + nameTable + " WHERE id = ?");
+            preparedStatement.setInt(1,reminder.getId());
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection(null,preparedStatement,connection);
+        }
+    }
 
     public static void addReminderByIdUser(Reminder reminder, int id){
         Connection connection = null;
@@ -31,6 +46,29 @@ public class ReminderRepo extends db_Settings{
             closeConnection(null,preparedStatement,connection);
         }
     }
+    public static void updateRminderById(Reminder reminder, int idReminder, int idUser){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DriverManager.getConnection(dbURL, dbUSER, dbPASSWORD);
+            String nameTable = idUser + "_reminders";
+            preparedStatement = connection.prepareStatement("UPDATE " + nameTable + " SET lesson = ?,date = ?,quest = ?,switch = ?,settingSwitch = ?,time = ?,dayOfWeek = ? WHERE id = ?");
+            preparedStatement.setString(1,reminder.getLessonName());
+            preparedStatement.setString(2,reminder.getDate());
+            preparedStatement.setString(3, reminder.getQuest());
+            preparedStatement.setBoolean(4,reminder.isSwitchR());
+            preparedStatement.setString(5,reminder.getSettingSwitch());
+            preparedStatement.setString(6,reminder.getTime());
+            preparedStatement.setString(7,reminder.getDatOfWeek());
+            preparedStatement.setInt(8,idReminder);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            closeConnection(null,preparedStatement,connection);
+        }
+    }
     public static ArrayList<Reminder> getAllRemindersByUser(int id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -45,8 +83,8 @@ public class ReminderRepo extends db_Settings{
                 lessonsList.add(new Reminder(
                         resultSet.getInt("id"),
                         resultSet.getString("lesson"),
-                        resultSet.getString("date"),
                         resultSet.getString("quest"),
+                        resultSet.getString("date"),
                         resultSet.getBoolean("switch"),
                         resultSet.getString("settingSwitch"),
                         resultSet.getString("time"),

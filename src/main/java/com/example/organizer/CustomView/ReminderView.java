@@ -2,7 +2,6 @@ package com.example.organizer.CustomView;
 
 import com.example.organizer.Main;
 import com.example.organizer.SciencesController;
-import com.example.organizer.model.Lesson;
 import com.example.organizer.model.Reminder;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +30,7 @@ public class ReminderView extends AnchorPane {
             throw new RuntimeException(exception);
         }
         pane.setOnMouseClicked(mouseEvent -> {
-            System.out.println("123");
+            SciencesController.toEditReminder(reminder);
         });
         this.lbName.setText(reminder.getLessonName());
         this.lbDate.setText(reminder.getDate());

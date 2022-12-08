@@ -6,6 +6,8 @@ module com.example.organizer {
     requires com.dlsc.formsfx;
     requires java.sql;
     requires java.desktop;
+    requires com.jfoenix;
+    requires org.burningwave.core;
 
     opens com.example.organizer to javafx.fxml;
     exports com.example.organizer;
@@ -13,4 +15,6 @@ module com.example.organizer {
     opens com.example.organizer.CustomView to javafx.fxml;
     exports com.example.organizer.Controller;
     opens com.example.organizer.Controller to javafx.fxml;
+
+
 }

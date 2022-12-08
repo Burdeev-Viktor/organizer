@@ -1,49 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-      prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.organizer.Controller.SignInController">
-   <AnchorPane prefHeight="400.0" prefWidth="177.0" style="-fx-background-color: #942e2e;"/>
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.organizer.Controller.SignInController">
+   <AnchorPane prefHeight="400.0" prefWidth="177.0" style="-fx-background-color: #942e2e;" />
    <AnchorPane prefHeight="400.0" prefWidth="526.0">
-      <TextField fx:id="twLogin" layoutX="222.0" layoutY="132.0" prefHeight="39.0" prefWidth="252.0"
-                 AnchorPane.rightAnchor="50.0">
+      <TextField fx:id="twLogin" layoutX="222.0" layoutY="132.0" prefHeight="39.0" prefWidth="252.0" AnchorPane.rightAnchor="50.0">
          <font>
-            <Font size="18.0"/>
+            <Font size="18.0" />
          </font>
       </TextField>
       <Label layoutX="82.0" layoutY="141.0" text="Логин:" AnchorPane.leftAnchor="80.0">
          <font>
-            <Font name="Arial Rounded MT Bold" size="18.0"/>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Label>
       <Label layoutX="82.0" layoutY="213.0" text="Пороль:" AnchorPane.leftAnchor="80.0">
          <font>
-            <Font name="Arial Rounded MT Bold" size="18.0"/>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Label>
-      <PasswordField fx:id="twPassword" layoutX="222.0" layoutY="204.0" prefHeight="39.0" prefWidth="252.0"
-                     AnchorPane.rightAnchor="50.0">
+      <PasswordField fx:id="twPassword" layoutX="222.0" layoutY="204.0" prefHeight="39.0" prefWidth="252.0" AnchorPane.rightAnchor="50.0">
          <font>
-            <Font size="18.0"/>
+            <Font size="18.0" />
          </font>
       </PasswordField>
-      <Button fx:id="butSignIn" layoutX="186.0" layoutY="284.0" mnemonicParsing="false" prefHeight="34.0"
-              prefWidth="125.0" text="Вход">
+      <Button fx:id="butSignIn" layoutX="186.0" layoutY="284.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="125.0" text="Вход">
          <font>
-            <Font name="Arial Rounded MT Bold" size="18.0"/>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Button>
-      <Label layoutX="149.0" layoutY="335.0" text="Нет аккаунта?"/>
-      <Button fx:id="butSignUp" layoutX="220.0" layoutY="332.0" mnemonicParsing="false"
-              style="-fx-background-color: transparent;" text="Зарегистрироваться" textFill="#2e2583"
-              underline="true">
+      <Label layoutX="149.0" layoutY="335.0" text="Нет аккаунта?" />
+      <Button fx:id="butSignUp" layoutX="220.0" layoutY="332.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Зарегистрироваться" textFill="#2e2583" underline="true">
          <font>
-            <Font name="Arial Rounded MT Bold" size="12.0"/>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
          </font>
       </Button>
+      <JFXTimePicker layoutX="211.0" layoutY="43.0">
+
+      </JFXTimePicker>
    </AnchorPane>
 </HBox>

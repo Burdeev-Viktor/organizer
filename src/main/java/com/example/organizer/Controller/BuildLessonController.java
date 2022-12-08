@@ -2,6 +2,7 @@ package com.example.organizer.Controller;
 
 import com.example.organizer.Const;
 import com.example.organizer.Repositories.LessonRepo;
+import com.example.organizer.Controller.SciencesController;
 import com.example.organizer.model.Lesson;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

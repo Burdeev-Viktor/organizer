@@ -10,6 +10,7 @@ import com.example.organizer.model.Lesson;
 import com.example.organizer.model.Reminder;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import com.jfoenix.controls.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
@@ -69,6 +70,8 @@ public class MainController implements Initializable {
     private Label lbDayOfWeek;
     @FXML
     private VBox vbReminders;
+    @FXML
+    private JFXTimePicker button;
 
     public static void setWeekCount(int weekCount) {
         MainController.weekCount = weekCount;
@@ -108,6 +111,8 @@ public class MainController implements Initializable {
         setWeek();
         setDataOfNewReminder();
         setReminders();
+
+
     }
 
     private void formationReminder() {

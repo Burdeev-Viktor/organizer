@@ -1,5 +1,6 @@
-package com.example.organizer;
+package com.example.organizer.Controller;
 
+import com.example.organizer.Const;
 import com.example.organizer.Repositories.UserRepo;
 import com.example.organizer.SecondTherd.SystemTrayClass;
 import com.example.organizer.model.User;
@@ -31,13 +32,13 @@ public class SignInController implements Initializable {
         butSignIn.setOnAction(event -> {
             if(twLogin.getText() == null || twPassword.getText() == null){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Введите все данные!");
+                alert.setContentText(Const.MESSAGE_ERROR_NOT_ALL_DATA);
                 alert.show();
                 return;
             }
             if(!UserRepo.userIsExistsByUser(new User(twLogin.getText(),twPassword.getText()))){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Ошибка входа, проверьте Логин или Пороль!");
+                alert.setContentText(Const.MESSAGE_ERROR_USERNAME_IS_EXIST);
                 alert.show();
                 return;
             }

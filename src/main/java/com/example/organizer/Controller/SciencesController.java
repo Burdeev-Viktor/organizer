@@ -1,5 +1,7 @@
-package com.example.organizer;
+package com.example.organizer.Controller;
 
+import com.example.organizer.Const;
+import com.example.organizer.Main;
 import com.example.organizer.Repositories.LessonRepo;
 import com.example.organizer.model.Lesson;
 import com.example.organizer.model.Reminder;
@@ -28,27 +30,27 @@ public class SciencesController {
     public static void toSignUp(ActionEvent event){
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("sign-up.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("sign-up.fxml"));
             root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root,770,400));
-        stage.setTitle("Регистрация");
+        stage.setTitle(Const.TITLE_SIGN_UP);
         stage.show();
     }
     public static void toSignIn(ActionEvent event){
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("sign-in.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("sign-in.fxml"));
             root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root,700,400));
-        stage.setTitle("Вход");
+        stage.setTitle(Const.TITLE_SIGN_IN);
         stage.show();
     }
     public static void toTimeTableEdit(ActionEvent event, User user){
@@ -57,21 +59,21 @@ public class SciencesController {
         }
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("timetable-edit.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("timetable-edit.fxml"));
             root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root,1000,700));
-        stage.setTitle("Расписание");
+        stage.setTitle(Const.TITLE_TIMETABLE);
         LessonEditController.setEventTimetable(stage);
         stage.show();
     }
     public static void toNewTimeTableEdit( User user){
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("timetable-edit.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("timetable-edit.fxml"));
             root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -81,14 +83,14 @@ public class SciencesController {
         }
         Stage stage = new Stage();
         stage.setScene(new Scene(root,1000,700));
-        stage.setTitle("Расписание");
+        stage.setTitle(Const.TITLE_TIMETABLE);
         LessonEditController.setEventTimetable(stage);
         stage.show();
     }
     public static void updateTimeTableEdit( User user,Stage stage){
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("timetable-edit.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("timetable-edit.fxml"));
             root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -97,14 +99,14 @@ public class SciencesController {
             LessonRepo.createTimetableByUser(user);
         }
         stage.setScene(new Scene(root,1000,700));
-        stage.setTitle("Расписание");
+        stage.setTitle(Const.TITLE_TIMETABLE);
         LessonEditController.setEventTimetable(stage);
         stage.show();
     }
     public static void toEditLesson(Lesson lesson){
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("lesson-edit.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("lesson-edit.fxml"));
             root = loader.load();
             LessonEditController lessonEditController = loader.getController();
             lessonEditController.setInfo(lesson);
@@ -116,13 +118,13 @@ public class SciencesController {
         }
         Stage stage = new Stage();
         stage.setScene(new Scene(root,600,450));
-        stage.setTitle("Изменить");
+        stage.setTitle(Const.TITLE_EDIT_LESSON);
         stage.show();
     }
     public static void toEditReminder(Reminder reminder){
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("reminder-edit.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("reminder-edit.fxml"));
             root = loader.load();
             ReminderEditController reminderEditController = loader.getController();
             reminderEditController.setInfo(reminder);
@@ -134,7 +136,7 @@ public class SciencesController {
         }
         Stage stage = new Stage();
         stage.setScene(new Scene(root,600,530));
-        stage.setTitle("Изменить");
+        stage.setTitle(Const.TITLE_EDIT_REMINDER);
         stage.show();
     }
     public static void toMain(ActionEvent event,User user){
@@ -144,7 +146,7 @@ public class SciencesController {
         }
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("main.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("main.fxml"));
             root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -154,39 +156,26 @@ public class SciencesController {
         stage.setScene(new Scene(root,1000,700));
         stage.setMinHeight(700);
         stage.setMinWidth(1000);
-        stage.setTitle("Расписание");
+        stage.setTitle(Const.TITLE_MAIN);
         ReminderEditController.setEventTimetable(stage);
-        stage.show();
-    }
-    public static void newMain(){
-        Parent root;
-        try {
-            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("main.fxml"));
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root,1000,700));
-        stage.setTitle("Студенческий органайзер");
         stage.show();
     }
     public static void updateMainByStage(Stage stage){
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("main.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("main.fxml"));
             root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         stage.setScene(new Scene(root,1000,700));
-        stage.setTitle("Студенческий органайзер");
+        stage.setTitle(Const.TITLE_MAIN);
         stage.show();
     }
     public static void updateMainByEvent(ActionEvent event){
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("main.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("main.fxml"));
             root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -195,7 +184,7 @@ public class SciencesController {
         double wight = stage.getWidth() - 16;
         double height = stage.getHeight() - 39;
         stage.setScene(new Scene(root,wight,height));
-        stage.setTitle("Расписание");
+        stage.setTitle(Const.TITLE_MAIN);
         ReminderEditController.setEventTimetable(stage);
         stage.show();
     }
@@ -203,7 +192,7 @@ public class SciencesController {
     public static void toAddLesson(ActionEvent event){
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(SciencesController.class.getResource("build-lesson.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("build-lesson.fxml"));
             root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -211,7 +200,7 @@ public class SciencesController {
         BuildLessonController.setEventTimetable(event);
         Stage stage = new Stage();
         stage.setScene(new Scene(root,600,450));
-        stage.setTitle("Новая пара");
+        stage.setTitle(Const.TITLE_ADD_LESSON);
         stage.show();
     }
     public static void closeThis(ActionEvent event){

@@ -1,9 +1,5 @@
 package com.example.organizer.SecondTherd;
-
-import com.example.organizer.SciencesController;
-import javafx.scene.control.Menu;
-import javafx.stage.Stage;
-
+import com.example.organizer.Const;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,11 +18,11 @@ public class SystemTrayClass {
                 Class<?> resource = SystemTrayClass.class;
                 URL imageURL = resource.getResource("/com/example/organizer/img/iconSmall.png");
                 Image image = Toolkit.getDefaultToolkit().createImage(imageURL);
-                trayIcon = new TrayIcon(image, "Студенческий органайзер");
+                trayIcon = new TrayIcon(image, Const.TITLE_MAIN);
                 trayIcon.setImageAutoSize(true);
-                trayIcon.setToolTip("Студенческий органайзер");
+                trayIcon.setToolTip(Const.TITLE_MAIN);
                 PopupMenu popupMenu = new PopupMenu();
-                MenuItem exit = new MenuItem("Выход");
+                MenuItem exit = new MenuItem(Const.EXIT);
                 exit.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {

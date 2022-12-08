@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="530.0" prefWidth="600.0" style="-fx-background-color: #942e2e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.organizer.ReminderEditController">
+<AnchorPane prefHeight="530.0" prefWidth="600.0" style="-fx-background-color: #942e2e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.organizer.Controller.ReminderEditController">
    <children>
       <Label layoutX="79.0" layoutY="59.0" text="Предмет:" textFill="#ccccbe" AnchorPane.leftAnchor="80.0">
          <font>
